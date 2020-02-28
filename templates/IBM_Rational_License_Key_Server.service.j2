@@ -1,0 +1,17 @@
+[Unit]
+Description = IBM Rational License Key Server
+After = network.target network.service
+
+[Service]
+ExecStartPre = /bin/sleep 10
+WorkingDirectory = {{ installation_location }}
+ExecStart = {{ installation_location }}/config/start_lmgrd start
+Type = forking
+Restart = always
+RestartSec = 30
+TimeoutSec = 30
+User =
+Group =
+
+[Install]
+WantedBy = multi-user.target

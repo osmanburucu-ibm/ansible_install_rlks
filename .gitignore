@@ -1,0 +1,20 @@
+#  Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# .tfvars files
+*.tfvars
+
+# vs-code files
+*.code-workspace
+
+# Ansible files
+*.retry
+
+# Vagrant
+.vagrant
+rnd.yml
+ansible_install_rlks.code-workspace

@@ -1,0 +1,78 @@
+---
+- hosts: rlks_server
+#  gather_facts: yes
+  become: yes
+  tasks:
+
+# redhat-lsb for RHEL/CENTOS, lsb for SUSE, lsb-core for Ubuntu
+  - name: set os specific variable of packagename
+    include_vars: 
+      file: "{{ item }}"
+    with_first_found:
+      - 'vars/{{ ansible_distribution }}.yml'
+      - 'vars/{{ ansible_os_family }}.yml'
+
+  - name: verify that prereqs are installed
+    package: 
+        name: "{{ required_packages }}"
+        state: present
+
+  - name: create a download directory if not exists
+    become: yes
+    file:
+      path: "{{ download_dir }}"
+      state: directory
+      recurse: yes
+
+  - name: download rlks installation pack
+    become: yes
+    copy:
+      src: "{{ rlks_installfiles_location }}/{{ rlks_file_name }}.{{ rlks_file_extension }}"
+      dest: "{{ download_dir }}"
+  
+  - name: unzip rlks installation pack
+    unarchive:
+      src: "{{ download_dir }}/{{ rlks_file_name }}.{{ rlks_file_extension }}"
+      dest: "{{ download_dir }}"
+      creates: "{{ download_dir }}/{{ rlks_source_dir }}"
+      remote_src: yes
+
+  - name: update rlks installation properties in the responsefile
+    template: 
+        src: "{{ rlks_responsefile_name }}.j2"
+        dest: "{{ download_dir }}/{{ rlks_source_dir }}/{{ rlks_responsefile_name }}"
+    vars:
+      repository_location: "{{ download_dir }}/{{ rlks_source_dir }}/{{ rlks_source_diskdir }}"
+      installation_location: "{{ rlks_target_directory }}"
+      shared_location: "{{ im_shared_directory }}"
+      install_version: "{{ rlks_install_version }}"
+
+  - name: install RLKS silently
+    become: yes
+    shell: ./imcl input "{{ download_dir }}/{{ rlks_source_dir }}/{{ rlks_responsefile_name }}"  -log "{{ download_dir }}/{{ rlks_source_dir }}/{{ rlks_install_log_name }}" -acceptLicense
+    args:
+      chdir: "{{ download_dir }}/{{ rlks_source_dir }}/{{ rlks_source_diskdir }}/{{ rlks_source_instimage_dir }}/{{ rlks_source_instimage_tools_dir }}"
+      creates: "{{ download_dir }}/{{ rlks_source_dir }}/{{ rlks_install_log_name }}"
+
+  - name: import license file
+    become: yes
+    copy:
+      src: "{{ rlks_installfiles_location }}/{{ rlks_source_license_file_name }}"
+      dest: "{{ rlks_target_directory }}/{{ rlks_target_license_directory }}/{{ rlks_target_license_file_name }}"
+      backup: yes
+      force: yes
+
+  - name: update rlks service properties
+    become: yes
+    template: 
+        src: "{{ rlks_service_file }}.j2"
+        dest: "/etc/systemd/system/{{ rlks_service_file }}"
+    vars:
+        installation_location: "{{ rlks_target_directory }}"
+
+  - name: start rlks service 
+    become: yes
+    service:
+      name: "{{ rlks_service_name }}"
+      enabled: yes
+      state: started

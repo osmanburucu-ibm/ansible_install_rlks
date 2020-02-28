@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<agent-input>
+  <variables>
+    <variable name='sharedLocation' value='{{ shared_location }}'/>
+  </variables>
+  <server>
+    <repository location='{{ repository_location }}'/>
+  </server>
+  <profile id='IBM Rational RLKS' installLocation='{{ installation_location }}'>
+    <data key='cic.selector.arch' value='x86'/>
+  </profile>
+  <install>
+    <!-- IBM® Rational® License Key Server 8.1.6 -->
+    <offering profile='IBM Rational RLKS' id='com.ibm.rational.license.key.server.linux.x86' version='{{ install_version }}' features='com.ibm.rational.license.key.server.feature'/>
+  </install>
+  <preference name='com.ibm.cic.common.core.preferences.eclipseCache' value='${sharedLocation}'/>
+</agent-input>
