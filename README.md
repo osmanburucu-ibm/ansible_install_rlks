@@ -17,7 +17,7 @@ This Playbook only checks if the prerequisites for RLKS are available and if not
 
 All parameters can be found in group_vars/rlks_server.yml
 I have downlaoded the binaries from [IBM Fix Central](https://www.ibm.com/support/fixcentral) using the "Rational Licensing", "Installed Version 8.1.6" and "Platform ALL" to search for the binary. 
-In the list or found binaries use [IBM_Rational_License_Key_Server_816](https://www.ibm.com/support/fixcentral/swg/downloadFixes?parent=ibm%7ERational&product=ibm/Rational/Rational+Common+Licensing&release=8.1.6&platform=All&function=fixId&fixids=IBM_Rational_License_Key_Server_816&useReleaseAsTarget=true&includeRequisites=1&includeSupersedes=0&downloadMethod=mget&login=true)
+In the list or found binaries use [IBM_Rational_License_Key_Server_816](https://www.ibm.com/support/fixcentral/swg/doSelectFixes?options.selectedFixes=IBM_Rational_License_Key_Server_816&continue=1)
 
 Put the downloaded zip file into your "rlks_installfiles_location". Also put your license file there.
 If you have purchased Rational products or have asked for evaluations you can download your license file from the [IBM Rational License Key Center](https://licensing.subscribenet.com/control/ibmr/login).
