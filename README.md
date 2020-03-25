@@ -26,7 +26,7 @@ If you have purchased Rational products or have asked for evaluations you can do
 
 Sometimes the lmgrd process just fails (service) and i manually stopped and disabled the service (IBM_Rational_License_Key_Server.service) and needed to start it manually with the start script.
 
-### used resources
+## used resources
 
 * [RLKS Installation steps on Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSSTWP_8.1.6/com.ibm.rational.license.doc/topics/c_node_installing.html)
 * [RLKS prereqs](https://www.ibm.com/support/knowledgecenter/SSSTWP_8.1.6/com.ibm.rational.license.doc/topics/t_before_install_lic_server_unix.html)
@@ -37,7 +37,7 @@ Sometimes the lmgrd process just fails (service) and i manually stopped and disa
 * [How can I auto-start the Rational License Key Server on RHEL 7.x systems](https://www.ibm.com/support/pages/how-can-i-auto-start-rational-license-key-server-rhel-7x-systems)
 * [Restart RLKS after reboot](https://www.ibm.com/support/knowledgecenter/SSSTWP_8.1.6/com.ibm.rational.license.doc/topics/r_restart_lic_server_unix.html)
 
-### trouble shooting
+## trouble shooting
 
 * [RLKS with error "bad ELF interpreter"](https://www.ibm.com/support/pages/installing-rational-license-key-server-red-hat-enterprise-linux-results-bad-elf-interpreter-error)
 * [RLKS error /usr/tmp/.flexlm](https://software.intel.com/en-us/articles/cant-make-directory-usrtmpflexlm)
