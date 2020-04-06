@@ -29,6 +29,7 @@ If you have purchased Rational products or have asked for evaluations you can do
 * [Installing a package silently](https://www.ibm.com/support/knowledgecenter/SSDV2W_1.8.5/com.ibm.silentinstall12.doc/topics/t_silent_response_file_install.html)
 
 * [How can I auto-start the Rational License Key Server on RHEL 7.x systems](https://www.ibm.com/support/pages/how-can-i-auto-start-rational-license-key-server-rhel-7x-systems)
+* [How to auto-start IBM Common Licensing on RHEL 7.x?](https://www.ibm.com/support/pages/node/881516)
 * [Restart RLKS after reboot](https://www.ibm.com/support/knowledgecenter/SSSTWP_8.1.6/com.ibm.rational.license.doc/topics/r_restart_lic_server_unix.html)
 
 ### trouble shooting
