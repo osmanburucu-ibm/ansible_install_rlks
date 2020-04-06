@@ -2,3 +2,4 @@
 required_packages: 
     - redhat-lsb
     - unzip 
+    - systemd

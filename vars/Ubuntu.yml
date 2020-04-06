@@ -2,3 +2,4 @@
 required_packages: 
     - lsb-core
     - unzip 
+    - systemd

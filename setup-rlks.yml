@@ -1,5 +1,6 @@
 ---
 - hosts: rlks_server
+  name: Installs IBM Rational License Key Server, imports license file and starts as a service
 #  gather_facts: yes
   become: yes
   tasks:
@@ -69,6 +70,23 @@
         dest: "/etc/systemd/system/{{ rlks_service_file }}"
     vars:
         installation_location: "{{ rlks_target_directory }}"
+        license_location: "{{ rlks_target_license_directory }}"
+        license_file: "{{ rlks_target_license_file_name }}"
+        service_user: "{{ rlks_service_user }}"
+        service_group: "{{ rlks_service_group }}"
+
+  - name: Grant read and execute permissions to service
+    become: yes
+    file:
+        path: "/etc/systemd/system/{{ rlks_service_file }}"
+        mode: '0755'
+
+  - name: Change ownership of RLKS installation direcotry
+    become: yes
+    file: 
+        path: "{{ rlks_target_directory }}"
+        owner: "{{ rlks_service_user }}"
+        group: "{{ rlks_service_user }}"
 
   - name: start rlks service 
     become: yes
