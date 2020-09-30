@@ -17,7 +17,7 @@ rlks_source_instimage_dir: InstallerImage_linux_gtk_x86_64
 rlks_source_instimage_tools_dir: tools
 
 # rlks license file related variables 
-rlks_source_license_file_name: license_2020.04.30.dat
+rlks_source_license_file_name: license.dat
 rlks_target_directory: "/opt/IBM/RationalRLKS"
 rlks_target_license_directory: config
 rlks_target_license_file_name: server_license.lic
